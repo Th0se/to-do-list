@@ -1,8 +1,5 @@
-const sideBar = document.querySelector(`#sideBar`);
-
-
 const record = () => {
-    const task = (title, dueDate, description, priority, notes, checklist) => {
+    const task = (title, dueDate, description, priority, notes) => {
         const record = {
             title: title,
             dueDate: dueDate,

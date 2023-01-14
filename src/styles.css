@@ -1,5 +1,8 @@
+body {
+    margin: 0;
+}
+
 #motherContainer {
-    width: 70%;
-    height: 70%;
-    background-color: black;
+    height: 100vh;
+    background-color: rgb(56, 18, 18);
 }
