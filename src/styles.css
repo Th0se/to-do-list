@@ -6,3 +6,25 @@ body {
     height: 100vh;
     background-color: rgb(56, 18, 18);
 }
+
+#taskForm {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    height: 75vh;
+    width: 75vw;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+fieldset {
+    margin: 0;
+    border-bottom: none;
+}
+
+fieldset:last-of-type {
+    border-bottom: groove rgb(192, 192, 192) 2px !important;
+}
+
+#taskFormConfirm {
+    width: 100%;
+}

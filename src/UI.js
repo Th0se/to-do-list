@@ -98,7 +98,7 @@ const taskForm = () => {
 
     const fieldset2Label = document.createElement(`label`);
     fieldset2Label.classList.add(`Formabel`);
-    fieldset2Label.textContent = `dueDate`;
+    fieldset2Label.textContent = `Due date`;
     fieldset2.appendChild(fieldset2Label);
 
     const fieldset2Input = document.createElement(`input`);
@@ -112,7 +112,7 @@ const taskForm = () => {
 
     const fieldset3Label = document.createElement(`label`);
     fieldset3Label.classList.add(`formLabel`);
-    fieldset3.textContent = `description`;
+    fieldset3.textContent = `Description`;
     fieldset3.appendChild(fieldset3Label);
 
     const fieldset3Input = document.createElement(`input`);
@@ -125,7 +125,7 @@ const taskForm = () => {
 
     const fieldset4Label = document.createElement(`label`);
     fieldset4Label.classList.add(`formLabel`);
-    fieldset4Label.textContent = `priority`;
+    fieldset4Label.textContent = `Priority`;
     fieldset4.appendChild(fieldset4Label);
 
     const fieldset4Input = document.createElement(`input`);
@@ -138,12 +138,17 @@ const taskForm = () => {
 
     const fieldset5Label = document.createElement(`label`);
     fieldset5Label.classList.add(`formLabel`);
-    fieldset5Label.textContent = `notes`;
+    fieldset5Label.textContent = `Notes`;
     fieldset5.appendChild(fieldset5Label);
 
     const fieldset5Input = document.createElement(`input`);
     fieldset5Input.classList.add(`formInput`);
     fieldset5.appendChild(fieldset5Input);
+
+    const button = document.createElement(`button`);
+    button.setAttribute(`id`, `taskFormConfirm`);
+    button.textContent = `Add task`;
+    form.appendChild(button);
     
     return container;
 }
