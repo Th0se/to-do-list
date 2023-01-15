@@ -1,12 +1,12 @@
 const record = () => {
-    const task = (title, dueDate, description, priority, notes) => {
+    const task = (title, dueDate, description, priority, notes, collection) => {
         const record = {
             title: title,
             dueDate: dueDate,
             description: description,
             priority: priority,
             notes: notes,
-            checklist: checklist,
+            collection: collection,
         }; 
     
         return {
@@ -24,6 +24,16 @@ const record = () => {
         };
     };
     const addToCollection = (collection, task) => {
-        collection.record.push(task);
+        collection.tasks.push(task);
+    };
+
+    return {
+        task,
+        collection,
+        addToCollection,
     };
 };
+
+export {
+    record,
+}
