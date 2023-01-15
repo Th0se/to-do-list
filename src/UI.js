@@ -17,47 +17,47 @@ const addCollection = () => {
 };
 
 const add = () => {
-    const container = document.createElement(`div`);
-    container.setAttribute(`id`, `addContainer`);
-
     const task = addTask();
     task.textContent = `New task`;
-    container.appendChild(task);
 
     const collection = addCollection();
     collection.textContent = `New collection`;
-    container.appendChild(collection);
 
+    const container = document.createElement(`div`);
+    container.setAttribute(`id`, `addContainer`);
+    container.appendChild(task);
+    container.appendChild(collection);
+    
     return container;
-    // apended to sideBar()
+    // appended to sideBar()
 };
 
 const tasksByTime = () => {
-    const container = document.createElement(`div`);
-    container.setAttribute(`id`, `tasksByTime`);
-
     const today = document.createElement(`button`);
     today.setAttribute(`id`, `sortToday`);
     today.textContent = `Today`;
-    container.appendChild(today);
 
     const tomorrow = document.createElement(`button`);
     tomorrow.setAttribute(`id`, `sortTomorrow`);
     tomorrow.textContent = `Tomorrow`;
-    container.appendChild(tomorrow);
 
     const nextWeek = document.createElement(`button`);
     nextWeek.setAttribute(`id`, `sortNextWeek`);
     nextWeek.textContent = `Next week`;
-    container.appendChild(nextWeek);
 
     const nextMonth = document.createElement(`button`);
     nextMonth.setAttribute(`id`, `sortNextMonth`);
     nextMonth.textContent = `Next month`;
+    
+    const container = document.createElement(`div`);
+    container.setAttribute(`id`, `tasksByTime`);
+    container.appendChild(today);
+    container.appendChild(tomorrow);
+    container.appendChild(nextWeek);
     container.appendChild(nextMonth);
 
     return container;
-    // apended to sideBar()
+    // appended to sideBar()
 };
 
 const tasksByCollection = () => {
@@ -65,7 +65,7 @@ const tasksByCollection = () => {
     container.setAttribute(`id`, `tasksByCollection`);
 
     return container;
-    // append to sideBar()
+    // appended to sideBar()
 };
 
 const sideBar = () => {
@@ -94,84 +94,80 @@ const viewContent = () => {
 };
 
 const taskForm = () => {
-    const container = document.createElement(`div`);
-    container.setAttribute(`id`, `taskForm`);
-
-    const form = document.createElement(`form`);
-    form.classList.add(`taskForm`);
-    container.appendChild(form);
-
-    const fieldset1 = document.createElement(`fieldset`);
-    fieldset1.classList.add(`fieldset`);
-    form.appendChild(fieldset1);
-
     const fieldset1Label = document.createElement(`label`);
     fieldset1Label.classList.add(`formLabel`);
     fieldset1Label.textContent = `Title`;
-    fieldset1.appendChild(fieldset1Label);
-
+    
     const fieldset1Input = document.createElement(`input`);
     fieldset1Input.classList.add(`formInput`);
+    
+    const fieldset1 = document.createElement(`fieldset`);
+    fieldset1.classList.add(`fieldset`);
+    fieldset1.appendChild(fieldset1Label);        
     fieldset1.appendChild(fieldset1Input);
-
-    const fieldset2 = document.createElement(`fieldset`);
-    fieldset2.classList.add(`fieldset`);
-    form.appendChild(fieldset2);
 
     const fieldset2Label = document.createElement(`label`);
     fieldset2Label.classList.add(`Formabel`);
     fieldset2Label.textContent = `Due date`;
-    fieldset2.appendChild(fieldset2Label);
 
     const fieldset2Input = document.createElement(`input`);
     fieldset2Input.classList.add(`formInput`);
     fieldset2Input.setAttribute(`type`, `date`);
-    fieldset2.appendChild(fieldset2Input);
 
-    const fieldset3 = document.createElement(`fieldset`);
-    fieldset3.classList.add(`fieldset`);
-    form.appendChild(fieldset3);
+    const fieldset2 = document.createElement(`fieldset`);
+    fieldset2.classList.add(`fieldset`);
+    fieldset2.appendChild(fieldset2Label);
+    fieldset2.appendChild(fieldset2Input);
 
     const fieldset3Label = document.createElement(`label`);
     fieldset3Label.classList.add(`formLabel`);
-    fieldset3.textContent = `Description`;
-    fieldset3.appendChild(fieldset3Label);
+    fieldset3Label.textContent = `Description`;
 
     const fieldset3Input = document.createElement(`input`);
     fieldset3Input.classList.add(`formInput`);
-    fieldset3.appendChild(fieldset3Input);
 
-    const fieldset4 = document.createElement(`fieldset`);
-    fieldset4.classList.add(`fieldset`);
-    form.appendChild(fieldset4);
+    const fieldset3 = document.createElement(`fieldset`);
+    fieldset3.classList.add(`fieldset`);
+    fieldset3.appendChild(fieldset3Label);
+    fieldset3.appendChild(fieldset3Input);
 
     const fieldset4Label = document.createElement(`label`);
     fieldset4Label.classList.add(`formLabel`);
     fieldset4Label.textContent = `Priority`;
-    fieldset4.appendChild(fieldset4Label);
-
+    
     const fieldset4Input = document.createElement(`input`);
     fieldset4Input.classList.add(`formInput`);
+    
+    const fieldset4 = document.createElement(`fieldset`);
+    fieldset4.classList.add(`fieldset`);
+    fieldset4.appendChild(fieldset4Label);
     fieldset4.appendChild(fieldset4Input);
-
-    const fieldset5 = document.createElement(`fieldset`);
-    fieldset5.classList.add(`fieldset`);
-    form.appendChild(fieldset5);
 
     const fieldset5Label = document.createElement(`label`);
     fieldset5Label.classList.add(`formLabel`);
     fieldset5Label.textContent = `Notes`;
-    fieldset5.appendChild(fieldset5Label);
 
     const fieldset5Input = document.createElement(`input`);
     fieldset5Input.classList.add(`formInput`);
+
+    const fieldset5 = document.createElement(`fieldset`);
+    fieldset5.classList.add(`fieldset`);
+    fieldset5.appendChild(fieldset5Label);
     fieldset5.appendChild(fieldset5Input);
 
     const button = document.createElement(`button`);
     button.setAttribute(`id`, `taskFormConfirm`);
     button.textContent = `Add task`;
-    form.appendChild(button);
     
+    const container = document.createElement(`form`);
+    container.setAttribute(`id`, `taskForm`);
+    container.appendChild(fieldset1);
+    container.appendChild(fieldset2);
+    container.appendChild(fieldset3);
+    container.appendChild(fieldset4);
+    container.appendChild(fieldset5);
+    container.appendChild(button);
+
     return container;
     // append to motherContainer()
 }
