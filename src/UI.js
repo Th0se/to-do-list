@@ -1,6 +1,7 @@
 const addTask = () => {
     const container = document.createElement(`button`);
     container.setAttribute(`id`, `addTaskButton`);
+    container.classList.add(`newButton`);
 
     return container;
     // appended to add()
@@ -9,6 +10,7 @@ const addTask = () => {
 const addCollection = () => {
     const container = document.createElement(`button`);
     container.setAttribute(`id`, `addCollectionButton`);
+    container.classList.add(`newButton`);
 
     return container;
     // appended to add()
@@ -33,6 +35,26 @@ const add = () => {
 const tasksByTime = () => {
     const container = document.createElement(`div`);
     container.setAttribute(`id`, `tasksByTime`);
+
+    const today = document.createElement(`button`);
+    today.setAttribute(`id`, `sortToday`);
+    today.textContent = `Today`;
+    container.appendChild(today);
+
+    const tomorrow = document.createElement(`button`);
+    tomorrow.setAttribute(`id`, `sortTomorrow`);
+    tomorrow.textContent = `Tomorrow`;
+    container.appendChild(tomorrow);
+
+    const nextWeek = document.createElement(`button`);
+    nextWeek.setAttribute(`id`, `sortNextWeek`);
+    nextWeek.textContent = `Next week`;
+    container.appendChild(nextWeek);
+
+    const nextMonth = document.createElement(`button`);
+    nextMonth.setAttribute(`id`, `sortNextMonth`);
+    nextMonth.textContent = `Next month`;
+    container.appendChild(nextMonth);
 
     return container;
     // apended to sideBar()
@@ -151,6 +173,7 @@ const taskForm = () => {
     form.appendChild(button);
     
     return container;
+    // append to motherContainer()
 }
 
 const motherContainer = () => {
