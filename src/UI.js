@@ -168,9 +168,11 @@ const taskForm = () => {
     const fieldset6Label = document.createElement(`label`);
     fieldset6Label.classList.add(`formLabel`);
     fieldset6Label.textContent = `Collection`;
+    fieldset6Label.setAttribute(`for`, `collection`);
 
     const fieldset6Input = document.createElement(`input`);
     fieldset6Input.classList.add(`formInput`);
+    fieldset6Input.setAttribute(`id`, `collection`);
 
     const fieldset6 = document.createElement(`fieldset`);
     fieldset6.classList.add(`fieldset`);
@@ -179,6 +181,7 @@ const taskForm = () => {
 
     const button = document.createElement(`button`);
     button.setAttribute(`id`, `taskFormConfirm`);
+    button.setAttribute(`type`, `button`);
     button.textContent = `Add task`;
     
     const container = document.createElement(`form`);

@@ -9,9 +9,7 @@ const record = () => {
             collection: collection,
         }; 
     
-        return {
-            record: record
-        };
+        return record;
     };
     const collection = (title) => {
         const record = {
@@ -19,21 +17,15 @@ const record = () => {
             tasks: [],
         };
     
-        return {
-            record: record,
-        };
-    };
-    const addToCollection = (collection, task) => {
-        collection.tasks.push(task);
+        return record;
     };
 
     return {
         task,
         collection,
-        addToCollection,
     };
 };
 
 export {
     record,
-}
+};

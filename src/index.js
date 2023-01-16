@@ -1,7 +1,9 @@
 import './styles.css';
+
 import {
     bridge,
 } from './bridge.js';
+
 import {
     addTask,
     addCollection,
@@ -12,9 +14,5 @@ import {
     taskForm,
     motherContainer,
 } from './UI.js';
-
-
-const main = motherContainer();
-document.body.appendChild(main);
 
 bridge();
