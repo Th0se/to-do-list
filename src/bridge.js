@@ -18,15 +18,14 @@ document.body.appendChild(motherContainer());
 const bridge = () => {
     const motherCollection = [];
 
-    const form = document.querySelector(`#taskForm`);
-
+    const taskForm = document.querySelector(`#taskForm`);
     const task = document.querySelector(`#addTaskButton`);
     task.addEventListener(`click`, () => {
-        form.classList.add(`active`);
+        taskForm.classList.add(`active`);
     });
 
-    const confirm = document.querySelector(`#taskFormConfirm`);
-    confirm.addEventListener(`click`, () => {
+    const taskConfirm = document.querySelector(`#taskFormConfirm`);
+    taskConfirm.addEventListener(`click`, () => {
         const title = document.querySelector(`#title`).value;
         const dueDate = document.querySelector(`#deadline`).value;
         const description = document.querySelector(`#description`).value;
@@ -35,24 +34,47 @@ const bridge = () => {
         const collection = document.querySelector(`#collection`).value;
 
         const resultTask = record().task(title, dueDate, description, priority, notes, collection);
-
-        const targetCollection = motherCollection.find((i) => {
-            i.title === collection;
-        });
+        
+        const targetCollection = motherCollection.find(i => i.title === collection);
 
         if (!targetCollection) {
             console.log(`No such collection. Creating one.`);
             const resultCollection = record().collection(collection);
             resultCollection.tasks.push(resultTask);
             motherCollection.push(resultCollection);
-        }
+            console.log(motherCollection);
+        } else if (targetCollection) {
+            console.log(`Collection found. Appending`);
+            targetCollection.tasks.push(resultTask);
+            console.log(motherCollection);
+        };
+        taskForm.classList.remove(`active`);
     });
 
-    return {
-        motherCollection,
-        form,
-        task,
-    };
+    const collectionForm = document.querySelector(`#collectionForm`);
+    const collectionButton = document.querySelector(`#addCollectionButton`);
+    collectionButton.addEventListener(`click`, () => {
+        collectionForm.classList.add(`active`);
+    });
+
+    const collectionConfirm = document.querySelector(`#collectionFormConfirm`);
+    collectionConfirm.addEventListener(`click`, () => {
+        const collection = document.querySelector(`#collectionFormInput`).value;
+
+        const targetCollection = motherCollection.find((i) => {
+            return i.title === collection;
+        });
+
+        if (targetCollection) {
+            console.log(`Collection found, no new collection was created.`);
+        } else if (!targetCollection) {
+            console.log(`No such collection. Creating one.`);
+            const resultCollection = record().collection(collection);
+            motherCollection.push(resultCollection);
+            console.log(motherCollection);
+        };
+        collectionForm.classList.remove(`active`);
+    })
 };
 
 export {

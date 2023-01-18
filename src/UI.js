@@ -182,7 +182,7 @@ const taskForm = () => {
     const button = document.createElement(`button`);
     button.setAttribute(`id`, `taskFormConfirm`);
     button.setAttribute(`type`, `button`);
-    button.textContent = `Add task`;
+    button.textContent = `Create task`;
     
     const container = document.createElement(`form`);
     container.setAttribute(`id`, `taskForm`);
@@ -196,7 +196,36 @@ const taskForm = () => {
 
     return container;
     // append to motherContainer()
-}
+};
+
+const collectionForm = () => {
+    const collectionFormLabel = document.createElement(`label`);
+    collectionFormLabel.classList.add(`formLabel`);
+    collectionFormLabel.setAttribute(`for`, `collectionFormInput`);
+    collectionFormLabel.textContent = `Title the collection`;
+
+    const collectionFormInput = document.createElement(`input`);
+    collectionFormInput.setAttribute(`id`, `collectionFormInput`);
+    collectionFormInput.classList.add(`formInput`);
+
+    const collectionFormFieldset = document.createElement(`fieldset`);
+    collectionFormFieldset.classList.add(`Fieldset`);
+    collectionFormFieldset.appendChild(collectionFormLabel);
+    collectionFormFieldset.appendChild(collectionFormInput);
+
+    const button = document.createElement('button');
+    button.setAttribute(`id`, `collectionFormConfirm`);
+    button.setAttribute(`type`, `button`);
+    button.textContent = `Create collection`;
+
+    const container = document.createElement(`form`);
+    container.setAttribute(`id`, `collectionForm`);
+    container.appendChild(collectionFormFieldset);
+    container.appendChild(button);
+
+    return container;
+    // append to motherContainer()
+};
 
 const motherContainer = () => {
     const container = document.createElement(`div`);
@@ -210,6 +239,9 @@ const motherContainer = () => {
 
     const form = taskForm();
     container.appendChild(form);
+
+    const collection = collectionForm();
+    container.appendChild(collection);
 
     return container;
 };
