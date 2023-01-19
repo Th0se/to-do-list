@@ -13,10 +13,40 @@ import {
     motherContainer,
 } from './UI.js';
 
+import rubbishBin from './delete.svg';
+
 document.body.appendChild(motherContainer());
 
 const bridge = () => {
     const motherCollection = [];
+
+    const updateTasksByCollection = () => {
+        const tasksByCollection = document.querySelector(`#tasksByCollection`);
+
+        while (tasksByCollection.firstChild) {
+            tasksByCollection.removeChild(tasksByCollection.firstChild);
+        }
+
+        for (let i in motherCollection) {
+            const title = motherCollection[i].title;
+
+            const deleteButton = document.createElement(`button`);
+            const deleteButtonIcon = document.createElement(`img`);
+            deleteButtonIcon.src = rubbishBin;
+            deleteButtonIcon.setAttribute(`alt`, `Delete button, represented by an icon of rubbish bin`);
+            deleteButtonIcon.classList.add(`deleteButtonIcon`);
+            deleteButton.appendChild(deleteButtonIcon);
+
+            const itemTitle = document.createElement(`p`);
+            itemTitle.textContent = title;
+
+            const item = document.createElement(`div`);
+            item.classList.add(`collectionItem`);
+            item.appendChild(itemTitle);
+            item.appendChild(deleteButton);
+            tasksByCollection.appendChild(item);
+        };
+    };
 
     const taskForm = document.querySelector(`#taskForm`);
     const task = document.querySelector(`#addTaskButton`);
@@ -49,6 +79,7 @@ const bridge = () => {
             console.log(motherCollection);
         };
         taskForm.classList.remove(`active`);
+        updateTasksByCollection();
     });
 
     const collectionForm = document.querySelector(`#collectionForm`);
@@ -74,7 +105,8 @@ const bridge = () => {
             console.log(motherCollection);
         };
         collectionForm.classList.remove(`active`);
-    })
+        updateTasksByCollection();
+    });
 };
 
 export {

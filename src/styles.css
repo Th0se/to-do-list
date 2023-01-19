@@ -16,7 +16,7 @@ body {
 #sideBar {
     grid-column: 1/2;
     display: grid;
-    grid-template-rows: 2fr 4fr 20fr;
+    grid-template-rows: 2fr 4fr 40rem;
     font-weight: 300;
     box-sizing: border-box;
 }
@@ -47,6 +47,32 @@ body {
     justify-content: center;
     align-items: center;
     margin: 1.2px;
+}
+
+#tasksByCollection {
+    grid-row: 3/4;
+    overflow: scroll;
+}
+
+.collectionItem {
+    display: grid;
+    grid-template-columns: 8fr 1fr;
+    height: 1.5rem;
+    font-size: 1.4rem;
+}
+
+.collectionItem > p {
+    grid-column: 1/9;
+    margin: 0;
+}
+
+.collectionItem > button {
+    grid-column: 9/10;
+}
+
+.deleteButtonIcon {
+    height: 1rem;
+    width: 1rem;
 }
 
 #taskForm,
