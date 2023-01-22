@@ -67,7 +67,7 @@ body {
     justify-content: center;
 }
 
-.collectionItem > p {
+.collectionItem > div {
     grid-column: 1/9;
     margin: 0;
     text-align: center;
@@ -122,6 +122,13 @@ fieldset,
 }
 .displayItem {
     margin: 3px 0;
+    display: grid;
+    grid-template-columns: 1fr 2rem;
+}
+
+.displayItem > div {
+    display: flex;
+    align-items: center;
 }
 
 .displayTaskContainer {

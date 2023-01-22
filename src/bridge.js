@@ -18,7 +18,7 @@ import rubbishBin from './delete.svg';
 document.body.appendChild(motherContainer());
 
 const bridge = () => {
-    const motherCollection = [];
+    let motherCollection = [];
     const viewContent = document.querySelector(`#viewContent`);
 
     const updateTasksByCollection = () => {
@@ -28,31 +28,36 @@ const bridge = () => {
             tasksByCollection.removeChild(tasksByCollection.firstChild);
         };
 
-        for (let i in motherCollection) {
-            const title = motherCollection[i].title;
-
+        for (let element of motherCollection) {
+            const title = element.title;
+        
             const deleteButton = document.createElement(`button`);
             const deleteButtonIcon = document.createElement(`img`);
             deleteButtonIcon.src = rubbishBin;
             deleteButtonIcon.setAttribute(`alt`, `Delete button, represented by an icon of rubbish bin`);
             deleteButtonIcon.classList.add(`deleteButtonIcon`);
             deleteButton.appendChild(deleteButtonIcon);
-
-            const itemTitle = document.createElement(`p`);
+            deleteButton.addEventListener(`click`, () => {
+                const index = motherCollection.indexOf(element);
+                motherCollection.splice(index, 1);
+            });
+        
+            const itemTitle = document.createElement(`div`);
             itemTitle.textContent = title;
-
+            itemTitle.addEventListener(`click`, () => {
+                while (viewContent.firstChild) {
+                    viewContent.removeChild(viewContent.firstChild);
+                };
+                displayCollection(element);
+            });
+        
             const item = document.createElement(`div`);
             item.classList.add(`collectionItem`);
             item.appendChild(itemTitle);
             item.appendChild(deleteButton);
-            item.addEventListener(`click`, () => {
-                while (viewContent.firstChild) {
-                    viewContent.removeChild(viewContent.firstChild);
-                };
-                displayCollection(motherCollection[i]);
-            });
+            
             tasksByCollection.appendChild(item);
-        };
+        };        
     };
 
     const displayCollection = (collection) => {    
@@ -62,7 +67,6 @@ const bridge = () => {
         viewContent.appendChild(displayTitle);
 
         const displayItem = (item) => {
-
             const displayTasks = (text, task) => {
                 const label = document.createElement(`div`);
                 label.classList = `displayTaskLabel`;
@@ -80,10 +84,9 @@ const bridge = () => {
                 return container;
             };
 
-            const container = document.createElement(`div`);
-            container.textContent = item.title;
-            container.classList.add(`displayItem`);
-            container.addEventListener(`click`, () => {
+            const title = document.createElement(`div`);
+            title.textContent = item.title;
+            title.addEventListener(`click`, () => {
                 while (viewContent.firstChild) {
                     viewContent.removeChild(viewContent.firstChild);
                 };
@@ -94,11 +97,29 @@ const bridge = () => {
                 viewContent.appendChild(displayTasks(`Priority`, item.priority));
             });
 
+            const deleteButton = document.createElement(`button`);
+            const deleteButtonIcon = document.createElement(`img`);
+            deleteButtonIcon.src = rubbishBin;
+            deleteButtonIcon.setAttribute(`alt`, `Delete button, represented by an icon of rubbish bin`);
+            deleteButtonIcon.classList.add(`deleteButtonIcon`);
+            deleteButton.appendChild(deleteButtonIcon);
+            deleteButton.addEventListener(`click`, () => {
+                const index = collection.tasks.indexOf(item);
+                collection.tasks.splice(index, 1);
+                console.log(collection.tasks);
+            });
+
+            const container = document.createElement(`div`);
+            container.classList.add(`displayItem`);
+            container.appendChild(title);
+            container.appendChild(deleteButton);
+            
+
             return container;
         };
         
-        for (let i in collection.tasks) {
-            const result = displayItem(collection.tasks[i]);
+        for (let i of collection.tasks) {
+            const result = displayItem(i);
             viewContent.appendChild(result);
         };
     };

@@ -15,4 +15,8 @@ import {
     motherContainer,
 } from './UI.js';
 
+setInterval(() => {
+    // refresh the UI every half a second.
+}, 500);
+
 bridge();
