@@ -19,13 +19,14 @@ document.body.appendChild(motherContainer());
 
 const bridge = () => {
     const motherCollection = [];
+    const viewContent = document.querySelector(`#viewContent`);
 
     const updateTasksByCollection = () => {
         const tasksByCollection = document.querySelector(`#tasksByCollection`);
 
         while (tasksByCollection.firstChild) {
             tasksByCollection.removeChild(tasksByCollection.firstChild);
-        }
+        };
 
         for (let i in motherCollection) {
             const title = motherCollection[i].title;
@@ -44,7 +45,61 @@ const bridge = () => {
             item.classList.add(`collectionItem`);
             item.appendChild(itemTitle);
             item.appendChild(deleteButton);
+            item.addEventListener(`click`, () => {
+                while (viewContent.firstChild) {
+                    viewContent.removeChild(viewContent.firstChild);
+                };
+                displayCollection(motherCollection[i]);
+            });
             tasksByCollection.appendChild(item);
+        };
+    };
+
+    const displayCollection = (collection) => {    
+        const displayTitle = document.createElement(`div`);
+        displayTitle.textcontent = collection.title;
+        displayTitle.classList.add(`displayTitle`);
+        viewContent.appendChild(displayTitle);
+
+        const displayItem = (item) => {
+
+            const displayTasks = (text, task) => {
+                const label = document.createElement(`div`);
+                label.classList = `displayTaskLabel`;
+                label.textContent = text;
+
+                const value = document.createElement(`div`);
+                value.classList = `displayTaskValue`;
+                value.textContent = task;
+
+                const container = document.createElement(`div`);
+                container.classList = `displayTaskContainer`;
+                container.appendChild(label);
+                container.appendChild(value);
+
+                return container;
+            };
+
+            const container = document.createElement(`div`);
+            container.textContent = item.title;
+            container.classList.add(`displayItem`);
+            container.addEventListener(`click`, () => {
+                while (viewContent.firstChild) {
+                    viewContent.removeChild(viewContent.firstChild);
+                };
+                viewContent.appendChild(displayTasks(`Title`, item.title));
+                viewContent.appendChild(displayTasks(`Due`, item.dueDate));
+                viewContent.appendChild(displayTasks(`Description`, item.description));
+                viewContent.appendChild(displayTasks(`Notes`, item.notes));
+                viewContent.appendChild(displayTasks(`Priority`, item.priority));
+            });
+
+            return container;
+        };
+        
+        for (let i in collection.tasks) {
+            const result = displayItem(collection.tasks[i]);
+            viewContent.appendChild(result);
         };
     };
 
