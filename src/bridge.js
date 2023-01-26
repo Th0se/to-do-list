@@ -5,7 +5,6 @@ import {
 import {
     addTask,
     addCollection,
-    tasksByTime,
     tasksByCollection,
     sideBar,
     viewContent,
@@ -19,7 +18,19 @@ document.body.appendChild(motherContainer());
 
 const bridge = () => {
     let motherCollection = [];
+
+    if (localStorage.getItem(`motherCollection`)) {
+        motherCollection = JSON.parse(localStorage.getItem(`motherCollection`));
+    } else {
+        motherCollection = [];
+        localStorage.setItem(`motherCollection`, JSON.stringify(motherCollection));
+    };
+
     const viewContent = document.querySelector(`#viewContent`);
+
+    const updateMotherCollection = () => {
+        localStorage.setItem(`motherCollection`, JSON.stringify(motherCollection));
+    };
 
     const updateTasksByCollection = () => {
         const tasksByCollection = document.querySelector(`#tasksByCollection`);
@@ -40,6 +51,8 @@ const bridge = () => {
             deleteButton.addEventListener(`click`, () => {
                 const index = motherCollection.indexOf(element);
                 motherCollection.splice(index, 1);
+                updateMotherCollection();
+                updateTasksByCollection();
             });
         
             const itemTitle = document.createElement(`div`);
@@ -57,7 +70,7 @@ const bridge = () => {
             item.appendChild(deleteButton);
             
             tasksByCollection.appendChild(item);
-        };        
+        };
     };
 
     const displayCollection = (collection) => {    
@@ -106,14 +119,14 @@ const bridge = () => {
             deleteButton.addEventListener(`click`, () => {
                 const index = collection.tasks.indexOf(item);
                 collection.tasks.splice(index, 1);
-                console.log(collection.tasks);
+                updateMotherCollection();
+                console.log(`Item deleted. Please refresh the page to see the updated list.`);
             });
 
             const container = document.createElement(`div`);
             container.classList.add(`displayItem`);
             container.appendChild(title);
             container.appendChild(deleteButton);
-            
 
             return container;
         };
@@ -148,14 +161,13 @@ const bridge = () => {
             const resultCollection = record().collection(collection);
             resultCollection.tasks.push(resultTask);
             motherCollection.push(resultCollection);
-            console.log(motherCollection);
         } else if (targetCollection) {
             console.log(`Collection found. Appending`);
-            targetCollection.tasks.push(resultTask);
-            console.log(motherCollection);
+            targetCollection.tasks.push(resultTask);        
         };
         taskForm.classList.remove(`active`);
         updateTasksByCollection();
+        updateMotherCollection();
     });
 
     const collectionForm = document.querySelector(`#collectionForm`);
@@ -182,7 +194,9 @@ const bridge = () => {
         };
         collectionForm.classList.remove(`active`);
         updateTasksByCollection();
+        updateMotherCollection();
     });
+    updateTasksByCollection();
 };
 
 export {

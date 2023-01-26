@@ -32,34 +32,6 @@ const add = () => {
     // appended to sideBar()
 };
 
-const tasksByTime = () => {
-    const today = document.createElement(`button`);
-    today.setAttribute(`id`, `sortToday`);
-    today.textContent = `Today`;
-
-    const tomorrow = document.createElement(`button`);
-    tomorrow.setAttribute(`id`, `sortTomorrow`);
-    tomorrow.textContent = `Tomorrow`;
-
-    const nextWeek = document.createElement(`button`);
-    nextWeek.setAttribute(`id`, `sortNextWeek`);
-    nextWeek.textContent = `Next week`;
-
-    const nextMonth = document.createElement(`button`);
-    nextMonth.setAttribute(`id`, `sortNextMonth`);
-    nextMonth.textContent = `Next month`;
-    
-    const container = document.createElement(`div`);
-    container.setAttribute(`id`, `tasksByTime`);
-    container.appendChild(today);
-    container.appendChild(tomorrow);
-    container.appendChild(nextWeek);
-    container.appendChild(nextMonth);
-
-    return container;
-    // appended to sideBar()
-};
-
 const tasksByCollection = () => {
     const container = document.createElement(`div`);
     container.setAttribute(`id`, `tasksByCollection`);
@@ -74,9 +46,6 @@ const sideBar = () => {
 
     const create = add();
     container.appendChild(create);
-
-    const timed = tasksByTime();
-    container.appendChild(timed);
 
     const collected = tasksByCollection();
     container.appendChild(collected);
@@ -173,7 +142,7 @@ const taskForm = () => {
     const fieldset6Input = document.createElement(`input`);
     fieldset6Input.classList.add(`formInput`);
     fieldset6Input.setAttribute(`id`, `collection`);
-
+    
     const fieldset6 = document.createElement(`fieldset`);
     fieldset6.classList.add(`fieldset`);
     fieldset6.appendChild(fieldset6Label);
@@ -249,7 +218,6 @@ const motherContainer = () => {
 export {
     addTask,
     addCollection,
-    tasksByTime,
     tasksByCollection,
     sideBar,
     viewContent,
