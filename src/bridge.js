@@ -121,6 +121,7 @@ const bridge = () => {
                 collection.tasks.splice(index, 1);
                 updateMotherCollection();
                 console.log(`Item deleted. Please refresh the page to see the updated list.`);
+                viewContent.removeChild(container);
             });
 
             const container = document.createElement(`div`);
