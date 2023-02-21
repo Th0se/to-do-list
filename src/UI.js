@@ -216,11 +216,5 @@ const motherContainer = () => {
 };
 
 export {
-    addTask,
-    addCollection,
-    tasksByCollection,
-    sideBar,
-    viewContent,
-    taskForm,
     motherContainer,
 };
